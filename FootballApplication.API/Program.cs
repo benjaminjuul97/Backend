@@ -1,3 +1,4 @@
+using FootballApplication.API.Middleware;
 using FootballApplication.Model.Repositories;
 
 
@@ -15,6 +16,31 @@ builder.Services.AddScoped<
 PlayerRepository, 
 PlayerRepository>();
 
+builder.Services.AddScoped<
+ClubRepository, 
+ClubRepository>();
+
+builder.Services.AddScoped<
+CountryRepository, 
+CountryRepository>();
+
+builder.Services.AddScoped<
+ManagerRepository, 
+ManagerRepository>();
+
+builder.Services.AddScoped<
+LeagueRepository, 
+LeagueRepository>();
+
+builder.Services.AddScoped<
+TransferRepository, 
+TransferRepository>();
+
+builder.Services.AddScoped<
+StadiumRepository, 
+StadiumRepository>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,7 +54,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
-
+//app.UseHeaderAuthenticationMiddleware();
+//app.UseBasicAuthenticationMiddleware();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -11,8 +11,10 @@ public class Club
     }
 
     public int Id { get; set; }
-    public string Name { get; set; }
+    public string Cname { get; set; }
     public int LeagueID { get; set; }
     public int ManagerID { get; set; }
-    public int StadiumID { get; set; }
+    public int? StadiumID { get; set; }
+
+    public string Logo { get; set; }
 }

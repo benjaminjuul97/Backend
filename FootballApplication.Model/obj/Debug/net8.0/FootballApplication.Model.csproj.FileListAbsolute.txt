@@ -6,8 +6,8 @@ C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballA
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.Model\obj\Debug\net8.0\FootballApplication.Model.AssemblyInfoInputs.cache
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.Model\obj\Debug\net8.0\FootballApplication.Model.AssemblyInfo.cs
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.Model\obj\Debug\net8.0\FootballApplication.Model.csproj.CoreCompileInputs.cache
+C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.Model\obj\Debug\net8.0\FootballApplication.Model.sourcelink.json
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.Model\obj\Debug\net8.0\FootballApplication.Model.dll
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.Model\obj\Debug\net8.0\refint\FootballApplication.Model.dll
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.Model\obj\Debug\net8.0\FootballApplication.Model.pdb
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.Model\obj\Debug\net8.0\ref\FootballApplication.Model.dll
-C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.Model\obj\Debug\net8.0\FootballApplication.Model.sourcelink.json

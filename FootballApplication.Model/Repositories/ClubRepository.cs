@@ -36,10 +36,18 @@ public class ClubRepository : BaseRepository
             {
                     return new Club(Convert.ToInt32(data["id"]))
                {
-                  Name = data["cname"].ToString(),
-                  LeagueID = (int)data["leagueid"],
-                  ManagerID = (int)data["managerid"],
-                  StadiumID = (int)data["stadiumid"]
+                  // Cname = data["cname"].ToString(),
+                  // LeagueID = (int)data["leagueid"],
+                  // ManagerID = (int)data["managerid"],
+                  // StadiumID = (int)data["stadiumid"],
+                  // Logo = data["logo"].ToString()
+
+                    Cname = data["cname"].ToString(),
+                    LeagueID = (int)(data["leagueid"] != DBNull.Value ? (int?)data["leagueid"] : null),
+                    ManagerID = (int)(data["managerid"] != DBNull.Value ? (int?)data["managerid"] : null),
+                    StadiumID = data["stadiumid"] != DBNull.Value ? (int?)data["stadiumid"] : null,
+                    Logo = data["logo"] != DBNull.Value ? data["logo"].ToString() : null
+
                };
 // #pragma warning restore CS8601 // Possible null reference assignment.
                 }
@@ -74,10 +82,17 @@ public class ClubRepository : BaseRepository
             {
                Club c = new Club(Convert.ToInt32(data["id"]))
                {
-                  Name = data["cname"].ToString(),
-                  LeagueID = (int)data["leagueid"],
-                  ManagerID = (int)data["managerid"],
-                  StadiumID = (int)data["stadiumid"] 
+                  // Cname = data["cname"].ToString(),
+                  // LeagueID = (int)data["leagueid"],
+                  // ManagerID = (int)data["managerid"],
+                  // StadiumID = (int)data["stadiumid"],
+                  // Logo = data["logo"].ToString()
+
+                   Cname = data["cname"].ToString(),
+                    LeagueID = (int)(data["leagueid"] != DBNull.Value ? (int?)data["leagueid"] : null),
+                    ManagerID = (int)(data["managerid"] != DBNull.Value ? (int?)data["managerid"] : null),
+                    StadiumID = data["stadiumid"] != DBNull.Value ? (int?)data["stadiumid"] : null,
+                    Logo = data["logo"] != DBNull.Value ? data["logo"].ToString() : null
                };
 
                clubs.Add(c);
@@ -102,16 +117,18 @@ public class ClubRepository : BaseRepository
          var cmd = dbConn.CreateCommand();
          cmd.CommandText = @"
 insert into club
-(cname,leagueid, managerid, stadiumid)
+(cname,leagueid, managerid, stadiumid, logo)
 values
-(@cname, @leagueid, @managerid, @stadiumid)
+(@cname, @leagueid, @managerid, @stadiumid, @logo)
 ";
 
          //adding parameters in a better way
-         cmd.Parameters.AddWithValue("@cname", NpgsqlDbType.Text, c.Name);
+         cmd.Parameters.AddWithValue("@cname", NpgsqlDbType.Text, c.Cname);
          cmd.Parameters.AddWithValue("@leagueid", NpgsqlDbType.Integer, c.LeagueID);
          cmd.Parameters.AddWithValue("@managerid", NpgsqlDbType.Integer, c.ManagerID);
          cmd.Parameters.AddWithValue("@stadiumid", NpgsqlDbType.Integer, c.StadiumID);
+         cmd.Parameters.AddWithValue("@logo", NpgsqlDbType.Text, c.Logo);
+
 
          //will return true if all goes well
          bool result = InsertData(dbConn, cmd);
@@ -133,14 +150,17 @@ update club set
 cname = @cname,
 leagueid = @leagueid,
 managerid = @managerid,
-stadiumid = @stadiumid
+stadiumid = @stadiumid,
+logo = @logo
 where
 id = @id";
 
-         cmd.Parameters.AddWithValue("@cname", NpgsqlDbType.Text, c.Name);
+         cmd.Parameters.AddWithValue("@cname", NpgsqlDbType.Text, c.Cname);
          cmd.Parameters.AddWithValue("@leagueid", NpgsqlDbType.Integer, c.LeagueID);
          cmd.Parameters.AddWithValue("@managerid", NpgsqlDbType.Integer, c.ManagerID);
          cmd.Parameters.AddWithValue("@stadiumid", NpgsqlDbType.Integer, c.StadiumID);
+         cmd.Parameters.AddWithValue("@logo", NpgsqlDbType.Text, c.Logo);
+         cmd.Parameters.AddWithValue("@id", NpgsqlDbType.Integer, c.Id);
 
       bool result = UpdateData(dbConn, cmd);
       return result;

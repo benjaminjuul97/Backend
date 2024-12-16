@@ -1,16 +1,16 @@
+c:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\FootballApplication.API.exe
+c:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\FootballApplication.API.dll
+c:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\Microsoft.OpenApi.dll
+c:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+c:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+c:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+c:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\FootballApplication.Model.dll
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\appsettings.json
-C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\FootballApplication.API.exe
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\FootballApplication.API.deps.json
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\FootballApplication.API.runtimeconfig.json
-C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\FootballApplication.API.dll
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\FootballApplication.API.pdb
-C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\Npgsql.dll
-C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\FootballApplication.Model.dll
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\bin\Debug\net8.0\FootballApplication.Model.pdb
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\FootballApplication.API.csproj.AssemblyReference.cache
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\FootballApplication.API.GeneratedMSBuildEditorConfig.editorconfig
@@ -19,6 +19,7 @@ C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballA
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\FootballApplication.API.csproj.CoreCompileInputs.cache
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\FootballApplication.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\FootballApplication.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\FootballApplication.API.sourcelink.json
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\staticwebassets\msbuild.FootballApplication.API.Microsoft.AspNetCore.StaticWebAssets.props
@@ -33,4 +34,3 @@ C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballA
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\FootballApplication.API.pdb
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\FootballApplication.API.genruntimeconfig.cache
 C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\ref\FootballApplication.API.dll
-C:\Users\benja\source\cbs\Applied Programming\2. Semester\Exam\Backend\FootballApplication.API\obj\Debug\net8.0\FootballApplication.API.sourcelink.json

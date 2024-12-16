@@ -23,7 +23,16 @@ public class PlayerRepository : BaseRepository
 
          //creating an SQL command
          var cmd = dbConn.CreateCommand();
-         cmd.CommandText = "select * from player where id = @id";
+         //cmd.CommandText = "select * from player where id = @id";
+         //cmd.CommandText = "SELECT player.*, country.flag, club.logo FROM player JOIN country ON player.countryid = country.id and JOIN club ON player.clubid = club.id WHERE player.id = @id";
+         cmd.CommandText = @"
+            SELECT player.*, country.flag, club.logo
+            FROM player
+            JOIN country ON player.countryid = country.id
+            JOIN club ON player.clubid = club.id
+            WHERE player.id = @id";
+
+
 
          cmd.Parameters.Add("@id", NpgsqlDbType.Integer).Value = id;
 
@@ -40,9 +49,12 @@ public class PlayerRepository : BaseRepository
                   Firstname = data["firstName"].ToString(),
                   Lastname = data["lastname"].ToString(),
                   Age = (int)data["age"],
-                  Position = data["pposition"].ToString(),
+                  Pposition = data["pposition"].ToString(),
                   ClubID = (int)data["clubid"],
-                  CountryID = (int)data["countryid"]
+                  CountryID = (int)data["countryid"],
+                  Image = data["image"].ToString(),
+                  Flag = data["flag"].ToString(),
+                  Logo = data["logo"].ToString()
                };
                 }
          }
@@ -65,7 +77,9 @@ public class PlayerRepository : BaseRepository
 
          //creating an SQL command
          var cmd = dbConn.CreateCommand();
-         cmd.CommandText = "select * from player";
+         //cmd.CommandText = "select * from player";
+         //cmd.CommandText = "SELECT player.*, country.flag FROM player JOIN country ON player.countryid = country.id";
+         cmd.CommandText = "SELECT player.*, country.flag, club.logo FROM player JOIN country ON player.countryid = country.id JOIN club ON player.clubid = club.id";
 
          //call the base method to get data
          var data = GetData(dbConn, cmd);
@@ -79,9 +93,13 @@ public class PlayerRepository : BaseRepository
                   Firstname = data["firstname"].ToString(),
                   Lastname = data["lastname"].ToString(),
                   Age = (int)data["age"],
-                  Position = data["pposition"].ToString(),
+                  Pposition = data["pposition"].ToString(),
                   ClubID = (int)data["clubid"],
-                  CountryID = (int)data["countryid"]
+                  CountryID = (int)data["countryid"],
+                  Image = data["image"].ToString(),
+                  Flag = data["flag"].ToString(),
+                  Logo = data["logo"].ToString()
+
                };
 
                players.Add(p);
@@ -106,18 +124,20 @@ public class PlayerRepository : BaseRepository
          var cmd = dbConn.CreateCommand();
          cmd.CommandText = @"
 insert into Player
-(Firstname, Lastname, Age, Position, ClubID, CountryID)
+(firstname, lastname, age, pposition, clubid, countryid, image)
 values
-(@firstname, @lastname, @age, @position, @clubid, @countryid)
+(@firstname, @lastname, @age, @pposition, @clubid, @countryid, @image)
 ";
 
          //adding parameters in a better way
          cmd.Parameters.AddWithValue("@firstname", NpgsqlDbType.Text, p.Firstname);
          cmd.Parameters.AddWithValue("@lastname", NpgsqlDbType.Text, p.Lastname);
          cmd.Parameters.AddWithValue("@age", NpgsqlDbType.Integer, p.Age);
-         cmd.Parameters.AddWithValue("@position", NpgsqlDbType.Text, p.Position);
+         cmd.Parameters.AddWithValue("@pposition", NpgsqlDbType.Text, p.Pposition);
          cmd.Parameters.AddWithValue("@clubid", NpgsqlDbType.Integer, p.ClubID);
          cmd.Parameters.AddWithValue("@countryid", NpgsqlDbType.Integer, p.CountryID);
+         cmd.Parameters.AddWithValue("@image", NpgsqlDbType.Text, p.Image);
+
 
 
          //will return true if all goes well
@@ -137,28 +157,30 @@ values
       var cmd = dbConn.CreateCommand();
       cmd.CommandText = @"
 update player set
-Firstname = @firstname,
-Lastname = @lastname,
-Age = @age,
-Position = @position,
-ClubID = @clubid,
-CountryID = @countryid
+firstname = @firstname,
+lastname = @lastname,
+age = @age,
+pposition = @pposition,
+clubid = @clubid,
+countryid = @countryid,
+image = @image
 where
 id = @id";
 
          cmd.Parameters.AddWithValue("@firstname", NpgsqlDbType.Text, p.Firstname);
          cmd.Parameters.AddWithValue("@lastname", NpgsqlDbType.Text, p.Lastname);
          cmd.Parameters.AddWithValue("@age", NpgsqlDbType.Integer, p.Age);
-         cmd.Parameters.AddWithValue("@position", NpgsqlDbType.Text, p.Position);
+         cmd.Parameters.AddWithValue("@pposition", NpgsqlDbType.Text, p.Pposition);
          cmd.Parameters.AddWithValue("@clubid", NpgsqlDbType.Integer, p.ClubID);
          cmd.Parameters.AddWithValue("@countryid", NpgsqlDbType.Integer, p.CountryID);
-
+         cmd.Parameters.AddWithValue("@image", NpgsqlDbType.Text, p.Image);
+         cmd.Parameters.AddWithValue("@id", NpgsqlDbType.Integer, p.Id);
 
       bool result = UpdateData(dbConn, cmd);
       return result;
    }
 
-    public bool Deleteplayer(int id)
+    public bool DeletePlayer(int id)
     {
        var dbConn = new NpgsqlConnection(ConnectionString);
        var cmd = dbConn.CreateCommand();
@@ -176,7 +198,7 @@ id = @id";
        return result;
     }
 
-    public bool DeletePlayer(int id)
+    public bool Deleteplayer(int id)
     {
         throw new NotImplementedException();
     }

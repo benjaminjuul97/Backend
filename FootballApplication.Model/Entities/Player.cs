@@ -14,8 +14,14 @@ public class Player
 
     public string Lastname { get; set; }
     public int Age { get; set; }
-    public string Position { get; set; }
+    public string Pposition { get; set; }
     public int ClubID { get; set; }
 
     public int CountryID { get; set; }
+
+    public string Image { get; set; }
+
+    public string Flag { get; set;}
+
+    public string Logo { get; set; }
 }

@@ -36,7 +36,8 @@ public class CountryRepository : BaseRepository
             {
                     return new Country(Convert.ToInt32(data["id"]))
                {
-                  Name = data["cname"].ToString(),
+                  Cname = data["cname"].ToString(),
+                  Flag = data["flag"].ToString()
                };
 // #pragma warning restore CS8601 // Possible null reference assignment.
                 }
@@ -52,7 +53,7 @@ public class CountryRepository : BaseRepository
    public List<Country> GetCountries()
    {
       NpgsqlConnection dbConn = null;
-      var clubs = new List<Country>();
+      var countries = new List<Country>();
       try
       {
          //create a new connection for database
@@ -71,14 +72,15 @@ public class CountryRepository : BaseRepository
             {
                Country c = new Country(Convert.ToInt32(data["id"]))
                {
-                  Name = data["cname"].ToString()
+                  Cname = data["cname"].ToString(),
+                  Flag = data["flag"].ToString()
                };
 
-               clubs.Add(c);
+               countries.Add(c);
             }
          }
 
-         return clubs;
+         return countries;
       }
       finally
       {
@@ -86,7 +88,7 @@ public class CountryRepository : BaseRepository
       }
    }
 
-   //add a new player
+   //add a new country
    public bool InsertCountry(Country c)
    {
       NpgsqlConnection dbConn = null;
@@ -96,13 +98,14 @@ public class CountryRepository : BaseRepository
          var cmd = dbConn.CreateCommand();
          cmd.CommandText = @"
 insert into country
-(cname)
+(cname, flag)
 values
-(@cname)
+(@cname, @flag)
 ";
 
          //adding parameters in a better way
-         cmd.Parameters.AddWithValue("@cname", NpgsqlDbType.Text, c.Name);
+         cmd.Parameters.AddWithValue("@cname", NpgsqlDbType.Text, c.Cname);
+         cmd.Parameters.AddWithValue("@flag", NpgsqlDbType.Text, c.Flag);
 
          //will return true if all goes well
          bool result = InsertData(dbConn, cmd);
@@ -120,12 +123,17 @@ values
       var dbConn = new NpgsqlConnection(ConnectionString);
       var cmd = dbConn.CreateCommand();
       cmd.CommandText = @"
-update country set
-cname = @cname
-where
-id = @id";
+      update country set
+      cname = @cname,
+      flag = @flag
+      where
+      id = @id";
 
-         cmd.Parameters.AddWithValue("@cname", NpgsqlDbType.Text, c.Name);
+         cmd.Parameters.AddWithValue("@cname", NpgsqlDbType.Text, c.Cname);
+         cmd.Parameters.AddWithValue("@flag", NpgsqlDbType.Text, c.Flag);
+         cmd.Parameters.AddWithValue("@id", NpgsqlDbType.Integer, c.Id);
+
+
 
       bool result = UpdateData(dbConn, cmd);
       return result;

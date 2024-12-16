@@ -36,10 +36,11 @@ public class StadiumRepository : BaseRepository
             {
                     return new Stadium(Convert.ToInt32(data["id"]))
                {
-                  Name = data["sname"].ToString(),
-                  Location = data["slocation"].ToString(),
+                  Sname = data["sname"].ToString(),
+                  Slocation = data["slocation"].ToString(),
                   Capacity = (int)data["capacity"],
-                  ClubID = (int)data["clubid"]
+                  ClubID = (int)data["clubid"],
+                  Image = data["image"].ToString()
                };
 // #pragma warning restore CS8601 // Possible null reference assignment.
                 }
@@ -74,10 +75,11 @@ public class StadiumRepository : BaseRepository
             {
                Stadium s = new Stadium(Convert.ToInt32(data["id"]))
                {
-                  Name = data["sname"].ToString(),
-                  Location = data["slocation"].ToString(),
+                  Sname = data["sname"].ToString(),
+                  Slocation = data["slocation"].ToString(),
                   Capacity = (int)data["capacity"],
-                  ClubID = (int)data["clubid"]
+                  ClubID = (int)data["clubid"],
+                  Image = data["image"].ToString()
                };
 
                stadiums.Add(s);
@@ -102,16 +104,18 @@ public class StadiumRepository : BaseRepository
          var cmd = dbConn.CreateCommand();
          cmd.CommandText = @"
 insert into stadium
-(sname, slocation, capacity, clubid)
+(sname, slocation, capacity, clubid, image)
 values
-(@sname, @slocation, @capacity, @clubid)
+(@sname, @slocation, @capacity, @clubid, @image)
 ";
 
          //adding parameters in a better way
-         cmd.Parameters.AddWithValue("@sname", NpgsqlDbType.Text, s.Name);
-         cmd.Parameters.AddWithValue("@slocation", NpgsqlDbType.Text, s.Location);
+         cmd.Parameters.AddWithValue("@sname", NpgsqlDbType.Text, s.Sname);
+         cmd.Parameters.AddWithValue("@slocation", NpgsqlDbType.Text, s.Slocation);
          cmd.Parameters.AddWithValue("@capacity", NpgsqlDbType.Integer, s.Capacity);
          cmd.Parameters.AddWithValue("@clubid", NpgsqlDbType.Integer, s.ClubID);
+         cmd.Parameters.AddWithValue("@image", NpgsqlDbType.Text, s.Image);
+
 
 
          //will return true if all goes well
@@ -131,17 +135,21 @@ values
       var cmd = dbConn.CreateCommand();
       cmd.CommandText = @"
 update Stadium set
-sname = @name,
-slocation = @location,
+sname = @sname,
+slocation = @slocation,
 capacity = @capacity,
-clubid = @clubid
+clubid = @clubid,
+image = @image
 where
 id = @id";
 
-         cmd.Parameters.AddWithValue("@name", NpgsqlDbType.Text, s.Name);
-         cmd.Parameters.AddWithValue("@location", NpgsqlDbType.Text, s.Location);
+         cmd.Parameters.AddWithValue("@sname", NpgsqlDbType.Text, s.Sname);
+         cmd.Parameters.AddWithValue("@slocation", NpgsqlDbType.Text, s.Slocation);
          cmd.Parameters.AddWithValue("@capacity", NpgsqlDbType.Integer, s.Capacity);
          cmd.Parameters.AddWithValue("@clubid", NpgsqlDbType.Integer, s.ClubID);
+         cmd.Parameters.AddWithValue("@image", NpgsqlDbType.Text, s.Image);
+         cmd.Parameters.AddWithValue("@id", NpgsqlDbType.Integer, s.Id);
+
 
 
       bool result = UpdateData(dbConn, cmd);

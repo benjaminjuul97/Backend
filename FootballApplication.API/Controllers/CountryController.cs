@@ -56,8 +56,8 @@ namespace FootballApplication.API.Controllers
                 return BadRequest("Country info not correct");
             }
 
-            Country existingClub = Repository.GetCountryById(country.Id);
-            if (existingClub == null)
+            Country existingCountry = Repository.GetCountryById(country.Id);
+            if (existingCountry == null)
             {
                 return NotFound($"Country with id  not found");
             }

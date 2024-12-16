@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApplication.API", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApplication.Model", "FootballApplication.Model\FootballApplication.Model.csproj", "{89622EB8-5EB6-449E-A89C-35157AAAE77C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApplication.Tests", "FootballApplication.Tests\FootballApplication.Tests.csproj", "{5483CB4A-8647-422A-8D18-16A248514BF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{89622EB8-5EB6-449E-A89C-35157AAAE77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89622EB8-5EB6-449E-A89C-35157AAAE77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89622EB8-5EB6-449E-A89C-35157AAAE77C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5483CB4A-8647-422A-8D18-16A248514BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5483CB4A-8647-422A-8D18-16A248514BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5483CB4A-8647-422A-8D18-16A248514BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5483CB4A-8647-422A-8D18-16A248514BF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

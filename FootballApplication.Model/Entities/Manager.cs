@@ -10,13 +10,15 @@ public class Manager
     }
 
     public int Id { get; set; }
-    public string FirstName { get; set; }
+    public string Firstname { get; set; }
 
-    public string LastName { get; set; }
-    public int Age { get; set; }
-    public int ExperienceYears { get; set; }
-    public int CountryID { get; set; }
+    public string Lastname { get; set; }
+    public int? Age { get; set; }
+    public int? Experienceyears { get; set; }
+    public int? CountryID { get; set; }
 
-    public int ClubID { get; set; }
+    public int? ClubID { get; set; }
+
+    public string? Image { get; set; }
 
 }

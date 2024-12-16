@@ -145,6 +145,8 @@ id = @id";
          cmd.Parameters.AddWithValue("@toclubid", NpgsqlDbType.Integer, t.ToClubID);
          cmd.Parameters.AddWithValue("@fromclubid", NpgsqlDbType.Integer, t.FromClubID);
          cmd.Parameters.AddWithValue("@playerid", NpgsqlDbType.Integer, t.PlayerID);
+         cmd.Parameters.AddWithValue("@id", NpgsqlDbType.Integer, t.Id);
+
 
       bool result = UpdateData(dbConn, cmd);
       return result;
