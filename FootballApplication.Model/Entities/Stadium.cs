@@ -21,4 +21,6 @@ public class Stadium
 
     public string Image { get; set; }
 
+    public string Logo { get; set; }
+
 }

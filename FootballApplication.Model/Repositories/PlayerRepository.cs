@@ -48,11 +48,11 @@ public class PlayerRepository : BaseRepository
                {
                   Firstname = data["firstName"].ToString(),
                   Lastname = data["lastname"].ToString(),
-                  Age = (int)data["age"],
                   Pposition = data["pposition"].ToString(),
                   ClubID = (int)data["clubid"],
                   CountryID = (int)data["countryid"],
                   Image = data["image"].ToString(),
+                  Dob = Convert.ToDateTime(data["dob"]),
                   Flag = data["flag"].ToString(),
                   Logo = data["logo"].ToString()
                };
@@ -77,8 +77,6 @@ public class PlayerRepository : BaseRepository
 
          //creating an SQL command
          var cmd = dbConn.CreateCommand();
-         //cmd.CommandText = "select * from player";
-         //cmd.CommandText = "SELECT player.*, country.flag FROM player JOIN country ON player.countryid = country.id";
          cmd.CommandText = "SELECT player.*, country.flag, club.logo FROM player JOIN country ON player.countryid = country.id JOIN club ON player.clubid = club.id";
 
          //call the base method to get data
@@ -92,11 +90,11 @@ public class PlayerRepository : BaseRepository
                {
                   Firstname = data["firstname"].ToString(),
                   Lastname = data["lastname"].ToString(),
-                  Age = (int)data["age"],
                   Pposition = data["pposition"].ToString(),
                   ClubID = (int)data["clubid"],
                   CountryID = (int)data["countryid"],
                   Image = data["image"].ToString(),
+                  Dob = Convert.ToDateTime(data["dob"]),
                   Flag = data["flag"].ToString(),
                   Logo = data["logo"].ToString()
 
@@ -124,19 +122,19 @@ public class PlayerRepository : BaseRepository
          var cmd = dbConn.CreateCommand();
          cmd.CommandText = @"
 insert into Player
-(firstname, lastname, age, pposition, clubid, countryid, image)
+(firstname, lastname, pposition, clubid, countryid, image, dob)
 values
-(@firstname, @lastname, @age, @pposition, @clubid, @countryid, @image)
+(@firstname, @lastname, @pposition, @clubid, @countryid, @image, @dob)
 ";
 
          //adding parameters in a better way
          cmd.Parameters.AddWithValue("@firstname", NpgsqlDbType.Text, p.Firstname);
          cmd.Parameters.AddWithValue("@lastname", NpgsqlDbType.Text, p.Lastname);
-         cmd.Parameters.AddWithValue("@age", NpgsqlDbType.Integer, p.Age);
          cmd.Parameters.AddWithValue("@pposition", NpgsqlDbType.Text, p.Pposition);
          cmd.Parameters.AddWithValue("@clubid", NpgsqlDbType.Integer, p.ClubID);
          cmd.Parameters.AddWithValue("@countryid", NpgsqlDbType.Integer, p.CountryID);
          cmd.Parameters.AddWithValue("@image", NpgsqlDbType.Text, p.Image);
+         cmd.Parameters.AddWithValue("@dob", NpgsqlDbType.Date, p.Dob);
 
 
 
@@ -159,21 +157,21 @@ values
 update player set
 firstname = @firstname,
 lastname = @lastname,
-age = @age,
 pposition = @pposition,
 clubid = @clubid,
 countryid = @countryid,
-image = @image
+image = @image,
+dob = @dob
 where
 id = @id";
 
          cmd.Parameters.AddWithValue("@firstname", NpgsqlDbType.Text, p.Firstname);
          cmd.Parameters.AddWithValue("@lastname", NpgsqlDbType.Text, p.Lastname);
-         cmd.Parameters.AddWithValue("@age", NpgsqlDbType.Integer, p.Age);
          cmd.Parameters.AddWithValue("@pposition", NpgsqlDbType.Text, p.Pposition);
          cmd.Parameters.AddWithValue("@clubid", NpgsqlDbType.Integer, p.ClubID);
          cmd.Parameters.AddWithValue("@countryid", NpgsqlDbType.Integer, p.CountryID);
          cmd.Parameters.AddWithValue("@image", NpgsqlDbType.Text, p.Image);
+         cmd.Parameters.AddWithValue("@dob", NpgsqlDbType.Date, p.Dob);
          cmd.Parameters.AddWithValue("@id", NpgsqlDbType.Integer, p.Id);
 
       bool result = UpdateData(dbConn, cmd);

@@ -24,6 +24,7 @@ public class LeagueRepository : BaseRepository
          //creating an SQL command
          var cmd = dbConn.CreateCommand();
          cmd.CommandText = "select * from league where id = @id";
+         
 
          cmd.Parameters.Add("@id", NpgsqlDbType.Integer).Value = id;
 
@@ -38,8 +39,7 @@ public class LeagueRepository : BaseRepository
                {
                   Lname = data["lname"].ToString(),
                   CountryID = (int)data["countryid"],
-                  Logo = data["logo"].ToString()
-
+                  Logo = data["logo"].ToString(),
                };
                 }
          }
@@ -62,7 +62,7 @@ public class LeagueRepository : BaseRepository
 
          //creating an SQL command
          var cmd = dbConn.CreateCommand();
-         cmd.CommandText = "select * from league";
+         cmd.CommandText = "SELECT league.*, country.flag FROM league JOIN country ON league.countryid = country.id";
 
          //call the base method to get data
          var data = GetData(dbConn, cmd);
@@ -75,7 +75,8 @@ public class LeagueRepository : BaseRepository
                {
                   Lname = data["lname"].ToString(),
                   CountryID = (int)data["countryid"],
-                  Logo = data["logo"].ToString()
+                  Logo = data["logo"].ToString(),
+                  Flag = data["flag"].ToString()
                };
 
                leagues.Add(l);

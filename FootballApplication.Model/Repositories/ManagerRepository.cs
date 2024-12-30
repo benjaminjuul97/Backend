@@ -43,13 +43,13 @@ public class ManagerRepository : BaseRepository
                   // CountryID = (int)data["countryid"],
                   // ClubID = (int)data["clubid"],
                   // Image = data["image"].ToString()
+                  //Dob = Convert.ToDateTime(data["dob"]),
                     Firstname = data["firstname"]?.ToString(),
                     Lastname = data["lastname"]?.ToString(),
-                    Age = data["age"] != DBNull.Value ? (int?)data["age"] : null,
-                    Experienceyears = data["experienceyears"] != DBNull.Value ? (int?)data["experienceyears"] : null,
                     CountryID = data["countryid"] != DBNull.Value ? (int?)data["countryid"] : null,
                     ClubID = data["clubid"] != DBNull.Value ? (int?)data["clubid"] : null,
-                    Image = data["image"]?.ToString()
+                    Image = data["image"]?.ToString(),
+                    Dob = Convert.ToDateTime(data["dob"]),
                };
                 }
          }
@@ -72,7 +72,8 @@ public class ManagerRepository : BaseRepository
 
          //creating an SQL command
          var cmd = dbConn.CreateCommand();
-         cmd.CommandText = "select * from manager";
+         cmd.CommandText = "SELECT manager.*, country.flag, club.logo FROM manager JOIN country ON manager.countryid = country.id JOIN club ON manager.clubid = club.id";
+
 
          //call the base method to get data
          var data = GetData(dbConn, cmd);
@@ -85,11 +86,12 @@ public class ManagerRepository : BaseRepository
                {
                   Firstname = data["firstname"].ToString(),
                   Lastname = data["lastname"].ToString(),
-                  Age = data["age"] != DBNull.Value ? Convert.ToInt32(data["age"]) : 0, // Default age if NULL
-                  Experienceyears = data["experienceyears"] != DBNull.Value ? Convert.ToInt32(data["experienceyears"]) : 0, // Default experience years if NULL
-                  CountryID = data["countryid"] != DBNull.Value ? Convert.ToInt32(data["countryid"]) : 0, // Default country ID if NULL
-                  ClubID = data["clubid"] != DBNull.Value ? Convert.ToInt32(data["clubid"]) : 0, // Default club ID if NULL
-                  Image = data["image"].ToString()
+                  CountryID = (int)data["countryid"],
+                  ClubID = (int)data["clubid"],
+                  Image = data["image"].ToString(),
+                  Dob = Convert.ToDateTime(data["dob"]),
+                  Flag = data["flag"].ToString(),
+                  Logo = data["logo"].ToString()
                };
 
                managers.Add(m);
@@ -114,18 +116,17 @@ public class ManagerRepository : BaseRepository
          var cmd = dbConn.CreateCommand();
          cmd.CommandText = @"
 insert into manager
-(firstname, lastname, age, experienceyears, countryid, clubid, image)
+(firstname, lastname, countryid, clubid, image, dob)
 values
-(@firstname, @lastname, @age, @experienceyears, @countryid, @clubid, @image)";
+(@firstname, @lastname, @countryid, @clubid, @image, @dob)";
 
          //adding parameters in a better way
          cmd.Parameters.AddWithValue("@firstname", NpgsqlDbType.Text, m.Firstname);
          cmd.Parameters.AddWithValue("@lastname", NpgsqlDbType.Text, m.Lastname);
-         cmd.Parameters.AddWithValue("@age", NpgsqlDbType.Integer, m.Age);
-         cmd.Parameters.AddWithValue("@experienceyears", NpgsqlDbType.Integer, m.Experienceyears);
          cmd.Parameters.AddWithValue("@countryid", NpgsqlDbType.Integer, m.CountryID);
          cmd.Parameters.AddWithValue("@clubid", NpgsqlDbType.Integer, m.ClubID);
          cmd.Parameters.AddWithValue("@image", NpgsqlDbType.Text, m.Image);
+         cmd.Parameters.AddWithValue("@dob", NpgsqlDbType.Date, m.Dob);
 
 
          //will return true if all goes well
@@ -147,21 +148,19 @@ values
 update manager set
 firstname = @firstname,
 lastname = @lastname,
-age = @age,
-experienceyears = @experienceyears,
 countryid = @countryid,
 clubid = @clubid,
-image = @image
+image = @image,
+dob = @dob
 where
 id = @id";
 
          cmd.Parameters.AddWithValue("@firstname", NpgsqlDbType.Text, m.Firstname);
          cmd.Parameters.AddWithValue("@lastname", NpgsqlDbType.Text, m.Lastname);
-         cmd.Parameters.AddWithValue("@age", NpgsqlDbType.Integer, m.Age);
-         cmd.Parameters.AddWithValue("@experienceyears", NpgsqlDbType.Integer, m.Experienceyears);
          cmd.Parameters.AddWithValue("@countryid", NpgsqlDbType.Integer, m.CountryID);
          cmd.Parameters.AddWithValue("@clubid", NpgsqlDbType.Integer, m.ClubID);
          cmd.Parameters.AddWithValue("@image", NpgsqlDbType.Text, m.Image);
+         cmd.Parameters.AddWithValue("@dob", NpgsqlDbType.Date, m.Dob);
          cmd.Parameters.AddWithValue("@id", NpgsqlDbType.Integer, m.Id);
 
 

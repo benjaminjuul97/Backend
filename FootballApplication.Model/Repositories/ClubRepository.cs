@@ -36,17 +36,11 @@ public class ClubRepository : BaseRepository
             {
                     return new Club(Convert.ToInt32(data["id"]))
                {
-                  // Cname = data["cname"].ToString(),
-                  // LeagueID = (int)data["leagueid"],
-                  // ManagerID = (int)data["managerid"],
-                  // StadiumID = (int)data["stadiumid"],
-                  // Logo = data["logo"].ToString()
-
-                    Cname = data["cname"].ToString(),
-                    LeagueID = (int)(data["leagueid"] != DBNull.Value ? (int?)data["leagueid"] : null),
-                    ManagerID = (int)(data["managerid"] != DBNull.Value ? (int?)data["managerid"] : null),
-                    StadiumID = data["stadiumid"] != DBNull.Value ? (int?)data["stadiumid"] : null,
-                    Logo = data["logo"] != DBNull.Value ? data["logo"].ToString() : null
+                  Cname = data["cname"].ToString(),
+                  LeagueID = (int)data["leagueid"],
+                  ManagerID = (int)data["managerid"],
+                  StadiumID = (int)data["stadiumid"],
+                  Logo = data["logo"].ToString()
 
                };
 // #pragma warning restore CS8601 // Possible null reference assignment.
@@ -71,7 +65,7 @@ public class ClubRepository : BaseRepository
 
          //creating an SQL command
          var cmd = dbConn.CreateCommand();
-         cmd.CommandText = "select * from club";
+         cmd.CommandText = "SELECT club.*, manager.firstname, manager.lastname, league.logo AS league_logo FROM club JOIN manager ON club.managerid = manager.id JOIN league ON club.leagueid = league.id";
 
          //call the base method to get data
          var data = GetData(dbConn, cmd);
@@ -82,17 +76,14 @@ public class ClubRepository : BaseRepository
             {
                Club c = new Club(Convert.ToInt32(data["id"]))
                {
-                  // Cname = data["cname"].ToString(),
-                  // LeagueID = (int)data["leagueid"],
-                  // ManagerID = (int)data["managerid"],
-                  // StadiumID = (int)data["stadiumid"],
-                  // Logo = data["logo"].ToString()
-
-                   Cname = data["cname"].ToString(),
-                    LeagueID = (int)(data["leagueid"] != DBNull.Value ? (int?)data["leagueid"] : null),
-                    ManagerID = (int)(data["managerid"] != DBNull.Value ? (int?)data["managerid"] : null),
-                    StadiumID = data["stadiumid"] != DBNull.Value ? (int?)data["stadiumid"] : null,
-                    Logo = data["logo"] != DBNull.Value ? data["logo"].ToString() : null
+                  Cname = data["cname"].ToString(),
+                  LeagueID = (int)data["leagueid"],
+                  ManagerID = (int)data["managerid"],
+                  StadiumID = (int)data["stadiumid"],
+                  ManagerFirstname = data["firstname"].ToString(),
+                  ManagerLastname = data["lastname"].ToString(),
+                  Logo = data["logo"].ToString(),
+                  LeagueLogo = data["league_logo"].ToString()
                };
 
                clubs.Add(c);

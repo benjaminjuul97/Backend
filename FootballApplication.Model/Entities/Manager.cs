@@ -13,12 +13,18 @@ public class Manager
     public string Firstname { get; set; }
 
     public string Lastname { get; set; }
-    public int? Age { get; set; }
-    public int? Experienceyears { get; set; }
     public int? CountryID { get; set; }
 
     public int? ClubID { get; set; }
 
     public string? Image { get; set; }
+
+    public DateTime Dob { get; set; }
+
+    public string Flag { get; set;}
+
+    public string Logo { get; set; }
+
+
 
 }

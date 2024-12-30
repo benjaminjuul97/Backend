@@ -64,7 +64,7 @@ public class StadiumRepository : BaseRepository
 
          //creating an SQL command
          var cmd = dbConn.CreateCommand();
-         cmd.CommandText = "select * from stadium";
+         cmd.CommandText = "SELECT stadium.*, club.logo FROM stadium JOIN club ON stadium.clubid = club.id";
 
          //call the base method to get data
          var data = GetData(dbConn, cmd);
@@ -79,7 +79,8 @@ public class StadiumRepository : BaseRepository
                   Slocation = data["slocation"].ToString(),
                   Capacity = (int)data["capacity"],
                   ClubID = (int)data["clubid"],
-                  Image = data["image"].ToString()
+                  Image = data["image"].ToString(),
+                  Logo = data["logo"].ToString()
                };
 
                stadiums.Add(s);

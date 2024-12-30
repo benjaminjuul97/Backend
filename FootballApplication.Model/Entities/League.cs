@@ -17,4 +17,6 @@ public class League
 
     public string Logo { get; set; }
 
+    public string Flag { get; set; }
+
 }
