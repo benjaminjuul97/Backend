@@ -33,10 +33,6 @@ LeagueRepository,
 LeagueRepository>();
 
 builder.Services.AddScoped<
-TransferRepository, 
-TransferRepository>();
-
-builder.Services.AddScoped<
 StadiumRepository, 
 StadiumRepository>();
 
